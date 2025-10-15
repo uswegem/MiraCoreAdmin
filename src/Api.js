@@ -6,8 +6,6 @@ const API = {
     ALL_PRODUCTS: '/loan/list-products',
     ALL_EMPLOYEES_LOAN: '/loan/list-employee-loan',
 
-
-
     LOGOUT: BASE_URL + 'api/admin/admin_logout',
     ADMIN_PROFILE: BASE_URL + 'api/admin/get_admin',
     UPDATE_ADMIN: BASE_URL + 'api/admin/edit_admin',
@@ -18,8 +16,6 @@ const API = {
     DELETE_USER: BASE_URL + 'api/admin/delete_user',
     BLOCK_UNBLOCK_USER: BASE_URL + 'api/admin/block_unblock_user',
     GET_USER_DETAILS: BASE_URL + 'api/admin/get_user_details',
-
-    //provider section
 
 
 }

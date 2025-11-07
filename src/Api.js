@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3000/api/v1'
+const BASE_URL = process.env.REACT_APP_API_V1_BASE_URL || 'http://localhost:3002/api/v1'
 
 const API = {
     LOGIN: '/auth/login',
@@ -16,7 +16,6 @@ const API = {
     DELETE_USER: BASE_URL + 'api/admin/delete_user',
     BLOCK_UNBLOCK_USER: BASE_URL + 'api/admin/block_unblock_user',
     GET_USER_DETAILS: BASE_URL + 'api/admin/get_user_details',
-
 
 }
 

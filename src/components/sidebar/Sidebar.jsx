@@ -6,6 +6,7 @@ import {
   EqualizerOutlined,
   PeopleOutline,
   RoomService,
+  MessageOutlined,
 } from "@mui/icons-material";
 import { HandCoins, ShoppingCart } from "lucide-react";
 
@@ -60,6 +61,16 @@ export default function Sidebar() {
               <div className="sidebarSelectHead">
                 <RoomService className="icon" />
                 <span>Notifications</span>
+              </div>
+            </div>
+          </NavLink>
+        </div>
+        <div className="sidebarMenu">
+          <NavLink to="/messages/pending">
+            <div className="sidebarSelect">
+              <div className="sidebarSelectHead">
+                <MessageOutlined className="icon" />
+                <span>Messages</span>
               </div>
             </div>
           </NavLink>

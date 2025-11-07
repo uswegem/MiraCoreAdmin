@@ -6,6 +6,7 @@ import Product from './pages/product/Product';
 import Loan from './pages/loan/Loan';
 import NotificationManagement from './pages/notification/NotificationManagement';
 import Dashboard from './pages/dashboard/Dashboard';
+import PendingResponsesManager from './pages/messages/PendingResponsesManager';
 
 const routes = [
     { path: "/dashboard", Component: <Dashboard /> },
@@ -16,6 +17,7 @@ const routes = [
     { path: "/notifications", Component: <NotificationManagement /> },
     { path: "/products", Component: <Product /> },
     { path: "/loan", Component: <Loan /> },
+    { path: "/messages/pending", Component: <PendingResponsesManager /> },
 ]
 
 

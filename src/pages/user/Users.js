@@ -1,8 +1,14 @@
 import { DataGrid } from '@mui/x-data-grid';
 import Paper from '@mui/material/Paper';
 import { LockOpenIcon } from "lucide-react";
+import React, { useCallback, useEffect, useState } from "react";
+import { getRequest } from "../../ApiFunction";
+import API, { BASE_URL } from "../../Api";
+import { toast } from "react-toastify";
 
 const Users = () => {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
@@ -41,192 +47,43 @@ const Users = () => {
     },
   ];
 
-  const rows = [
-    {
-      id: 1,
-      username: "adminMaster",
-      email: "admin@fintech.com",
-      password: "hashed_password_1",
-      role: "admin",
-      createdAt: "2025-09-01T10:15:00Z",
-      updatedAt: "2025-09-10T14:20:00Z",
-    },
-    {
-      id: 2,
-      username: "johnDoe",
-      email: "john.doe@gmail.com",
-      password: "hashed_password_2",
-      role: "user",
-      createdAt: "2025-08-20T09:45:00Z",
-      updatedAt: "2025-09-09T11:30:00Z",
-    },
-    {
-      id: 3,
-      username: "sarahInvestor",
-      email: "sarah.investor@finmail.com",
-      password: "hashed_password_3",
-      role: "user",
-      createdAt: "2025-07-12T13:05:00Z",
-      updatedAt: "2025-09-05T16:45:00Z",
-    },
-    {
-      id: 4,
-      username: "fintechAdmin",
-      email: "admin.support@fintech.com",
-      password: "hashed_password_4",
-      role: "admin",
-      createdAt: "2025-06-15T08:00:00Z",
-      updatedAt: "2025-09-01T18:10:00Z",
-    },
-    {
-      id: 5,
-      username: "mikeUser",
-      email: "mike123@yahoo.com",
-      password: "hashed_password_5",
-      role: "user",
-      createdAt: "2025-09-05T12:25:00Z",
-      updatedAt: "2025-09-11T09:50:00Z",
-    },
-    {
-      id: 1,
-      username: "adminMaster",
-      email: "admin@fintech.com",
-      password: "hashed_password_1",
-      role: "admin",
-      createdAt: "2025-09-01T10:15:00Z",
-      updatedAt: "2025-09-10T14:20:00Z",
-    },
-    {
-      id: 2,
-      username: "johnDoe",
-      email: "john.doe@gmail.com",
-      password: "hashed_password_2",
-      role: "user",
-      createdAt: "2025-08-20T09:45:00Z",
-      updatedAt: "2025-09-09T11:30:00Z",
-    },
-    {
-      id: 3,
-      username: "sarahInvestor",
-      email: "sarah.investor@finmail.com",
-      password: "hashed_password_3",
-      role: "user",
-      createdAt: "2025-07-12T13:05:00Z",
-      updatedAt: "2025-09-05T16:45:00Z",
-    },
-    {
-      id: 4,
-      username: "fintechAdmin",
-      email: "admin.support@fintech.com",
-      password: "hashed_password_4",
-      role: "admin",
-      createdAt: "2025-06-15T08:00:00Z",
-      updatedAt: "2025-09-01T18:10:00Z",
-    },
-    {
-      id: 5,
-      username: "mikeUser",
-      email: "mike123@yahoo.com",
-      password: "hashed_password_5",
-      role: "user",
-      createdAt: "2025-09-05T12:25:00Z",
-      updatedAt: "2025-09-11T09:50:00Z",
-    },
-    {
-      id: 1,
-      username: "adminMaster",
-      email: "admin@fintech.com",
-      password: "hashed_password_1",
-      role: "admin",
-      createdAt: "2025-09-01T10:15:00Z",
-      updatedAt: "2025-09-10T14:20:00Z",
-    },
-    {
-      id: 2,
-      username: "johnDoe",
-      email: "john.doe@gmail.com",
-      password: "hashed_password_2",
-      role: "user",
-      createdAt: "2025-08-20T09:45:00Z",
-      updatedAt: "2025-09-09T11:30:00Z",
-    },
-    {
-      id: 3,
-      username: "sarahInvestor",
-      email: "sarah.investor@finmail.com",
-      password: "hashed_password_3",
-      role: "user",
-      createdAt: "2025-07-12T13:05:00Z",
-      updatedAt: "2025-09-05T16:45:00Z",
-    },
-    {
-      id: 4,
-      username: "fintechAdmin",
-      email: "admin.support@fintech.com",
-      password: "hashed_password_4",
-      role: "admin",
-      createdAt: "2025-06-15T08:00:00Z",
-      updatedAt: "2025-09-01T18:10:00Z",
-    },
-    {
-      id: 5,
-      username: "mikeUser",
-      email: "mike123@yahoo.com",
-      password: "hashed_password_5",
-      role: "user",
-      createdAt: "2025-09-05T12:25:00Z",
-      updatedAt: "2025-09-11T09:50:00Z",
-    },
-    {
-      id: 1,
-      username: "adminMaster",
-      email: "admin@fintech.com",
-      password: "hashed_password_1",
-      role: "admin",
-      createdAt: "2025-09-01T10:15:00Z",
-      updatedAt: "2025-09-10T14:20:00Z",
-    },
-    {
-      id: 2,
-      username: "johnDoe",
-      email: "john.doe@gmail.com",
-      password: "hashed_password_2",
-      role: "user",
-      createdAt: "2025-08-20T09:45:00Z",
-      updatedAt: "2025-09-09T11:30:00Z",
-    },
-    {
-      id: 3,
-      username: "sarahInvestor",
-      email: "sarah.investor@finmail.com",
-      password: "hashed_password_3",
-      role: "user",
-      createdAt: "2025-07-12T13:05:00Z",
-      updatedAt: "2025-09-05T16:45:00Z",
-    },
-    {
-      id: 4,
-      username: "fintechAdmin",
-      email: "admin.support@fintech.com",
-      password: "hashed_password_4",
-      role: "admin",
-      createdAt: "2025-06-15T08:00:00Z",
-      updatedAt: "2025-09-01T18:10:00Z",
-    },
-    {
-      id: 5,
-      username: "mikeUser",
-      email: "mike123@yahoo.com",
-      password: "hashed_password_5",
-      role: "user",
-      createdAt: "2025-09-05T12:25:00Z",
-      updatedAt: "2025-09-11T09:50:00Z",
-    },
-  ];
+  const fetchUsers = useCallback(async () => {
+    try {
+      setLoading(true);
+      const result = await getRequest(`${BASE_URL + API.GET_ALL_USERS}`);
 
+      const { status, data, message } = result.data;
 
+      if (!status) {
+        toast.error(message || "Failed to fetch users");
+        return;
+      }
+
+      // Map the API response to match the DataGrid format
+      const formattedUsers = data?.map((user) => ({
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        role: user.role,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+      })) || [];
+
+      setUsers(formattedUsers);
+    } catch (err) {
+      toast.error("Error fetching users: " + err.message);
+      console.error("Error fetching users:", err);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchUsers();
+  }, [fetchUsers]);
+
+  const rows = users;
   const paginationModel = { page: 0, pageSize: 5 };
-
 
   return (
     <div className="container">
@@ -242,7 +99,7 @@ const Users = () => {
               columns={columns}
               initialState={{ pagination: { paginationModel } }}
               pageSizeOptions={[5, 10]}
-              // checkboxSelection
+              loading={loading}
               sx={{ border: 0 }}
             />
           </Paper>

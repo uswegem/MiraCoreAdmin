@@ -17,6 +17,11 @@ const API = {
     BLOCK_UNBLOCK_USER: BASE_URL + 'api/admin/block_unblock_user',
     GET_USER_DETAILS: BASE_URL + 'api/admin/get_user_details',
 
+    //message response section
+    PENDING_RESPONSES: '/messages/pending-responses',
+    MESSAGE_REQUEST: '/messages/request',
+    MANUAL_RESPONSE: '/messages/manual-response',
+    MESSAGE_STATUS: '/messages/status'
 }
 
 export default API
